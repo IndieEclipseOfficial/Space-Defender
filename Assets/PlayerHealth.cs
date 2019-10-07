@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
 
@@ -24,12 +25,11 @@ public class PlayerHealth : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             print("Here!");
             Menu.SetActive(true);
-            
-            Invoke("Delay", 1.5f);
         }
 
         if(health < 0) {
             print("Game Over!");
+            SceneManager.LoadScene(1);
         }
         else {
             if (health != 100)
@@ -37,10 +37,6 @@ public class PlayerHealth : MonoBehaviour {
             else
                 return;
         }
-    }
-
-    private void Delay() {
-        FindObjectOfType<StartMenu>().Delay();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
